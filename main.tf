@@ -41,3 +41,4 @@ resource "aws_instance" "dev_infrapro" {
 tags = {
   Name = "Dev_IP"
 }
+
