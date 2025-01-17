@@ -20,20 +20,10 @@ terraform {
     }
 }
 
-variable "aws_access_key" {
-  description = "AWS Access Key"
-  type        = string
-}
-
-variable "aws_secret_key" {
-  description = "AWS Secret Key"
-  type        = string
-}
-
 provider "aws" {
   region     = "us-east-1"          
-  access_key = file ("/home/ubuntu/terraform/projects/IP/terraform.tfvars")      
-  secret_key = file ("/home/ubuntu/terraform/projects/IP/terraform.tfvars")      
+  access_key = var.aws_access_key    
+  secret_key = var.aws_secret_key      
 }
 
 resource "aws_key_pair" "MKP" {
