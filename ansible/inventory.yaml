@@ -1,5 +1,5 @@
 All:
   hosts:
 	Dev_IP:
-	  ansible_host: 3.89.183.33
+	  ansible_host: 54.196.131.21
 	  ansible_user: ubuntu
