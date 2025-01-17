@@ -32,8 +32,8 @@ variable "aws_secret_key" {
 
 provider "aws" {
   region     = "us-east-1"          
-  access_key = file ("/home/ubuntu/terraform/projects/s1.tfvars")      
-  secret_key = file ("/home/ubuntu/terraform/projects/s1.tfvars")      
+  access_key = file ("/home/ubuntu/terraform/projects/IP/terraform.tfvars")      
+  secret_key = file ("/home/ubuntu/terraform/projects/IP/terraform.tfvars")      
 }
 
 resource "aws_key_pair" "MKP" {
