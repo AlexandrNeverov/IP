@@ -28,7 +28,7 @@ provider "aws" {
 
 resource "aws_key_pair" "MKP" {
     key_name = "MKP"
-    public_key = file ("/home/ubuntu/terraform/projects/IP")
+    public_key = file ("/home/ubuntu/terraform/projects/IP/MKP")
 }
 
 resource "aws_instance" "dev_infrapro" {
