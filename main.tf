@@ -45,6 +45,7 @@ resource "aws_instance" "dev_infrapro" {
     ami = "ami-04b4f1a9cf54c11d0"
     instance_type = "t2.micro"
     key_name = "MKP"
+    security_group_ids = ["sg-01033627ec148d99c"]
 
 
   tags = {
@@ -52,3 +53,10 @@ resource "aws_instance" "dev_infrapro" {
       }
     }
 
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update -y",
+      "sudo apt-get install -y ansible",
+      "ansible-playbook /home/ubuntu/terraform/projects/IP/ansible/jenkins_pl.yaml"
+    ]
+  }
