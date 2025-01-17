@@ -22,13 +22,13 @@ terraform {
 
 provider "aws" {
   region     = "us-east-1"          
-  access_key = "YOUR_ACCESS_KEY"      
-  secret_key = "YOUR_SECRET_KEY"     
+  access_key = file ("/home/ubuntu/terraform/projects/s1.tfvars")      
+  secret_key = file ("/home/ubuntu/terraform/projects/s1.tfvars")      
 }
 
 resource "aws_key_pair" "MKP" {
     key_name = "MKP"
-    public_key = file ("/home/ubuntu/terraform/projects/IP/id_ed25519.pub")
+    public_key = file ("/home/ubuntu/.ssh/id_ed25519.pub")
 }
 
 resource "aws_instance" "dev_infrapro" {
@@ -36,4 +36,8 @@ resource "aws_instance" "dev_infrapro" {
     instance_type = "t2.micro"
     key_name = "MKP"
   
+}
+
+tags = {
+  Name = "Dev_IP"
 }
