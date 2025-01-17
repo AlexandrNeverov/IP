@@ -60,3 +60,4 @@ resource "aws_instance" "dev_infrapro" {
       "ansible-playbook /home/ubuntu/terraform/projects/IP/ansible/jenkins_pl.yaml"
     ]
   }
+}
