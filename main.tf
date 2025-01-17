@@ -39,13 +39,6 @@ provider "aws" {
 resource "aws_key_pair" "MKP" {
     key_name = "MKP"
     public_key = file ("/home/ubuntu/.ssh/id_ed25519.pub")
-}
-
-resource "aws_instance" "dev_infrapro" {
-    ami = "ami-04b4f1a9cf54c11d0"
-    instance_type = "t2.micro"
-    key_name = "MKP"
-    security_groups = ["launch-wizard-1"]
 
 
   tags = {
