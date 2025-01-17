@@ -35,10 +35,10 @@ resource "aws_instance" "dev_infrapro" {
     ami = "ami-04b4f1a9cf54c11d0"
     instance_type = "t2.micro"
     key_name = "MKP"
-  
-}
 
-tags = {
-  Name = "Dev_IP"
-}
+
+  tags = {
+        Name = "Dev_IP"
+      }
+    }
 
