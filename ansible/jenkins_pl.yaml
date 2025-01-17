@@ -1,5 +1,48 @@
-All:
-  hosts:
-	Dev_IP:
-	  ansible_host: 3.89.183.33
-	  ansible_user: ubuntu
+---
+- name:  Install and set up Jenkins
+  hosts: Dev_IP
+  become: yes
+
+  vars:
+  jenkins_admin_user: "admin"
+  jenkins_admin_password: "admin_password"
+  
+  tasks:
+	  
+	- name: Install Java (required for Jenkins)
+	  apt: 
+		name: openjdk-11-jdk
+		state: present
+		update_cache: yes  
+	  
+	- name: Install Jenkins
+	  apt: 
+		name: jenkins
+		state: present
+
+	- name: jenkins enable
+	  service:
+		name: jenkins
+		state: started
+		enabled: yes
+	
+  - name: Set Jenkins admin password
+		  become: yes
+		  copy:
+			dest: "/var/lib/jenkins/secrets/initialAdminPassword"
+			content: "{{ jenkins_admin_password }}"
+			owner: jenkins
+			group: jenkins
+			mode: '0600'
+	
+	- name: Configure Jenkins user
+	  become: yes
+	  shell: |
+		curl -X POST -d "username={{ jenkins_admin_user }}&password={{ jenkins_admin_password }}" http://localhost:8080/initialize
+	  register: jenkins_auth		
+	
+	- name: Ensure Jenkins is running
+	  uri:
+		url: http://localhost:8080
+		method: GET
+		status_code: 200
