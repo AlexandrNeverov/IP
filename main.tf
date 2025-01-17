@@ -45,7 +45,7 @@ resource "aws_instance" "dev_infrapro" {
     ami = "ami-04b4f1a9cf54c11d0"
     instance_type = "t2.micro"
     key_name = "MKP"
-    security_group_ids = ["sg-01033627ec148d99c"]
+    security_group_ids = ["launch-wizard-1"]
 
 
   tags = {
